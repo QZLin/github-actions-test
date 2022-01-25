@@ -21,7 +21,7 @@ jobs:
       - name: Collect Info
         run: |
           ls
-          echo ${{ github.ref_name }}
+          echo ${{ github.ref }}
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
