@@ -7,8 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
-    tags:
-      - "release*"
+    # tags:
+    #   - "release*"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -18,7 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Release
+      - name: Collect Info
+        run: |
+          ls
+          echo github.ref_name
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: test-1
