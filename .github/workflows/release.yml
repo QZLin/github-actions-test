@@ -21,9 +21,9 @@ jobs:
       - name: Collect Info
         run: |
           ls
-          [[ `git log -1` =~ commit\ +([^[:space:]]*) ]]
-          commit=${BASH_REMATCH[1]}
-          echo ${{ github.ref }}
+          commit=`git log -1 --format='%H'`
+          echo $commit
+          echo "commit=$commit" >> $GITHUB_ENV
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
