@@ -31,4 +31,4 @@ jobs:
         with:
           tag_name: ${{ env.commit }}
           name: ${{ env.title }}
-          body_path: ${{ commit.tmp.txt }}
+          body_path: commit.tmp.txt
