@@ -17,8 +17,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      pre: false
     steps:
       - uses: actions/checkout@v2
       - name: Collect Info
@@ -26,8 +24,8 @@ jobs:
           echo commit=release-`git log -1 --format='%h'` >> $GITHUB_ENV
           echo title=`git log -1 --format='%f'` >> $GITHUB_ENV
 
-          if [[ $commit =~ ^prerelease ]] ;then echo pre=true >> $GITHUB_ENV ;fi
-
+          if [[ $commit =~ ^prerelease ]] ;then echo pre=true >> $GITHUB_ENV;else echo pre=false >> $GITHUB_ENV ;fi
+          
           echo Auto Generated Release > commit.tmp.txt
           echo >> commit.tmp.txt
           git log -1 >> commit.tmp.txt
