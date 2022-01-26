@@ -22,7 +22,7 @@ jobs:
           echo commit=$commit >> $GITHUB_ENV
           echo title=$title >> $GITHUB_ENV
 
-          if [[ $title =~ "release" ]] || [[ $title =~ "pre-release" ]];then echo "::info Not_Release";echo exit=true >> $GITHUB_ENV;fi
+          if [[ $title =~ "release" ]] || [[ $title =~ "pre-release" ]];then echo "::info Not_Release";echo exit=false >> $GITHUB_ENV;fi
           if [[ $title =~ pre-release ]] ;then echo pre=true >> $GITHUB_ENV;else echo pre=false >> $GITHUB_ENV ;fi
 
           echo Auto Generated Release > commit.tmp.txt
