@@ -31,7 +31,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.commit }}
+          tag_name: ${{ env.title }}
           name: ${{ env.title }}
           body_path: commit.tmp.txt
           prerelease: ${{ env.pre }}
