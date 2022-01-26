@@ -23,13 +23,12 @@ jobs:
           echo commit=release-`git log -1 --format='%h'` >> $GITHUB_ENV
           echo title=`git log -1 --format='%f'` >> $GITHUB_ENV
 
-          echo Auto Generated Release > commit.tmp.log
-          echo >> commit.tmp.log
-          git log -1 >> commit.tmp.log
-          echo body=`cat commit.tmp.log` >> $GITHUB_ENV
+          echo Auto Generated Release > commit.tmp.txt
+          echo >> commit.tmp.txt
+          git log -1 >> commit.tmp.txt
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.commit }}
           name: ${{ env.title }}
-          body: ${{ env.body }}
+          body_path: ${{ commit.tmp.txt }}
