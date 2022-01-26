@@ -23,15 +23,15 @@ jobs:
           echo title=$title >> $GITHUB_ENV
 
           if [[ $title =~ "release" ]]; then echo pre=false >> $GITHUB_ENV; elif [[ $title =~ "pre-release" ]]; then echo pre=true >> $GITHUB_ENV;
-          else echo "::notice Not_Release";echo exit=true >> $GITHUB_ENV; echo "::stop-commands::`echo -n ${{ github.token }} | sha256sum | head -c 64`";fi
+          else echo "::notice Not_Release";exit 1;fi
           echo "IsPre: ${{ env.pre }}, Release: ${{ env.exit }}"
 
           echo Auto Generated Release > commit.tmp.txt
           echo >> commit.tmp.txt
           git log -1 >> commit.tmp.txt
-      - name: Check Is Release
+      - name: cancelling
+        if: failure()
         uses: andymckay/cancel-action@0.2
-        if: ${{ env.exit }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
