@@ -21,8 +21,12 @@ jobs:
       - name: Collect Info
         run: |
           echo commit=release-`git log -1 --format='%h'` >> $GITHUB_ENV
-          echo title=`git log -1 --format='%s'` >> $GITHUB_ENV
-          echo body=Auto Release\n`git log -1 --format='%b'` >> $GITHUB_ENV
+          echo title=`git log -1 --format='%f'` >> $GITHUB_ENV
+
+          echo Auto Generated Release > commit.tmp.log
+          echo >> commit.tmp.log
+          git log -1 >> commit.tmp.log
+          echo body=`cat commit.tmp.log` >> $GITHUB_ENV
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
