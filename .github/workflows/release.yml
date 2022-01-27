@@ -17,9 +17,9 @@ jobs:
           echo commit=$commit >> $GITHUB_ENV
           echo title=$title >> $GITHUB_ENV
 
-          if [[ $title =~ ^release ]]; then echo pre=false >> $GITHUB_ENV; elif [[ $title =~ ^pre-release ]]; then echo pre=true >> $GITHUB_ENV;
+          if [[ $title =~ ^release ]]; then echo pre=false >> $GITHUB_ENV;
+          elif [[ $title =~ ^pre-release ]]; then echo pre=true >> $GITHUB_ENV;
           else echo "::notice Not_Release";exit 1;fi
-          echo "IsPre: ${{ env.pre }}, Release: ${{ env.exit }}"
 
           echo Auto Generated Release > commit.tmp.txt
           echo >> commit.tmp.txt
