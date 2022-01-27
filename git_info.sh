@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # hash=$(git log -1 --format='%h')
 title=$(git log -1 --format='%s')
 title_tag=$(git log -1 --format='%f')

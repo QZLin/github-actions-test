@@ -38,3 +38,5 @@ jobs:
           name: ${{ env.title }}
           body_path: commit.tmp.txt
           prerelease: ${{ env.pre }}
+          files: |
+            git_info.sh
