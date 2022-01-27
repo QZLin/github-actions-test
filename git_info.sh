@@ -1,4 +1,5 @@
-hash=$(git log -1 --format='%h')
+#!/bin/sh
+# hash=$(git log -1 --format='%h')
 title=$(git log -1 --format='%s')
 title_tag=$(git log -1 --format='%f')
 body=$(git log -1 --format='%b')
