@@ -21,7 +21,7 @@ jobs:
     defaults:
       run:
         shell: pwsh
-        working-directory: "{{ GITHUB_WORKSPACE }}/working_dir"
+        working-directory: "working_dir"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
@@ -29,4 +29,4 @@ jobs:
 
       - name: Execute Script
         run: |
-          pwsh actions.ps1
+          pwsh {{ GITHUB_WORKSPACE }}/actions.ps1
