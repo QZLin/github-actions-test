@@ -30,3 +30,9 @@ jobs:
       - name: Execute Script
         run: |
           pwsh ../actions.ps1
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: result.zip
+          path: .
