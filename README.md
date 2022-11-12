@@ -3,8 +3,8 @@
 
 
 ## Future Plan
-- [ ] Auto Download Url in repo
-- [ ] Download to artifact
+- [x] Auto Download Url in repo
+- [x] Download to artifact
 - [ ] Download to release
 - [ ] Download to cloud
 - [ ] Limit Download Time/Size
