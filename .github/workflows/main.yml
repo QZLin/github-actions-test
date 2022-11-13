@@ -1,9 +1,25 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-
+permissions:
+  # actions: read|write|none
+  # checks: read|write|none
+  contents: write
+  # deployments: read|write|none
+  # id-token: read|write|none
+  issues: write
+  # discussions: read|write|none
+  # packages: read|write|none
+  # pages: read|write|none
+  # pull-requests: read|write|none
+  # repository-projects: read|write|none
+  # security-events: read|write|none
+  # statuses: read|write|none
 # Controls when the workflow will run
 on:
+  issues:
+    types:
+      - opened
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
