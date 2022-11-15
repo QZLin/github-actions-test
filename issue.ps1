@@ -1,6 +1,6 @@
 Write-Output (Get-Location)
-gh issue list -s open |
-ForEach-Object { 
+gh issue list -s open | ForEach-Object `
+{ 
     $line = $_ -split "\s+"
     Write-Output ('"' + ($line -join '","') + '"')
     $index = $line[0]
