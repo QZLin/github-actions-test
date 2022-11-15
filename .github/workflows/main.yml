@@ -40,12 +40,16 @@ jobs:
         working-directory: "working_dir"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Auth gh
+        run: gh auth login --with-token "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Checkout
         uses: actions/checkout@v2.5.0
 
       - name: Execute Script
         run: |
-          pwsh ../actions.ps1
+          . ../actions.ps1
+          . ../issue.ps1
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.1
