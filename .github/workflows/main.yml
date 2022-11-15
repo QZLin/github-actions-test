@@ -40,11 +40,11 @@ jobs:
         working-directory: "working_dir"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Auth gh
-        run: gh auth login --with-token "${{ secrets.GITHUB_TOKEN }}"
-
       - name: Checkout
         uses: actions/checkout@v2.5.0
+
+      - name: Auth gh
+        run: gh auth login --with-token "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Execute Script
         run: |
