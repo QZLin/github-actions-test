@@ -16,7 +16,7 @@ gh issue list -s open | ForEach-Object {
             Write-Verbose $Matches
             $url = $Matches[0]
             wget $url
-            gh issue close $index
+            gh issue close $index -r "Task Completed"
         }
     }
 }
