@@ -75,8 +75,11 @@ jobs:
         run: echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
 
       - name: Execute Script
+        env:
+            GITHUB_CONTEXT: ${{ toJSON(github) }}
+        # run: echo "$GITHUB_CONTEXT"
         run: |
-          . ../actions.ps1
+          # . ../actions.ps1
           . ../issue.ps1
 
       - name: Upload a Build Artifact

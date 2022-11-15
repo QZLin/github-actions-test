@@ -1,4 +1,11 @@
 Write-Output (Get-Location)
+
+$github_context = $env:GITHUB_CONTEXT | ConvertFrom-Json
+
+function actions_run_url($id) {
+    return "https://github.com/$($github_context.repository)/actions/runs/$id"
+}
+
 gh issue list -s open | ForEach-Object { 
     $line = $_ -split "\s+"
     Write-Output ('"' + ($line -join '","') + '"')
@@ -16,7 +23,7 @@ gh issue list -s open | ForEach-Object {
             Write-Verbose $Matches
             $url = $Matches[0]
             wget $url
-            gh issue close $index -r "Task Completed"
+            gh issue close $index -c "Task completed, please check $(actions_run_url($github_context.run_id))"
         }
     }
 }
