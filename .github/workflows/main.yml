@@ -79,7 +79,7 @@ jobs:
             GITHUB_CONTEXT: ${{ toJSON(github) }}
         # run: echo "$GITHUB_CONTEXT"
         run: |
-          # . ../actions.ps1
+          . ../actions.ps1
           . ../issue.ps1
 
       - name: Upload a Build Artifact
