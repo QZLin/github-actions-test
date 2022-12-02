@@ -1,6 +1,7 @@
 # Github Actions Test
 
-
+## Command
+* /download --actions
 
 ## Future Plan
 - [x] Auto Download Url in repo
@@ -8,4 +9,4 @@
 - [ ] Download to release
 - [ ] Download to cloud
 - [ ] Limit Download Time/Size
-- [ ] Issue commands
+- [x] Issue commands
