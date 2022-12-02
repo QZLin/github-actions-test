@@ -1,3 +1,4 @@
+Install-Script -Name Remove-InvalidFileNameChars
 Write-Output (Get-Location)
 
 $github_context = $env:GITHUB_CONTEXT | ConvertFrom-Json
@@ -19,11 +20,27 @@ gh issue list -s open | ForEach-Object {
         $text = $issue[($text_start + 1)..$issue.Length]
         Write-Output $text
 
-        if ("$text" -match "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]") {
-            Write-Verbose $Matches
-            $url = $Matches[0]
-            wget $url
-            gh issue close $index -c "Task completed, please check $(actions_run_url($github_context.run_id))"
+        foreach ($line in $text -split "`n") {
+            $wget_args = [System.Collections.ArrayList]::new()
+
+            if ($line -match "`$name=(.*)") {
+                $name = $Matches[1]
+            }
+            if ($line -match "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]") {
+                $url = $Matches[0]
+            }
+            if ($url) {
+                $wget_args.Add($url)
+                if ($name) {
+                    $wget_args.Add('-O')
+                    $wget_args.Add($name)
+                }
+                
+                Start-Process wget -ArgumentList $wget_args -NoNewWindow -Wait
+            }
+            
         }
+        gh issue close $index -c "Task completed, please check $(actions_run_url($github_context.run_id))"
+        
     }
 }
